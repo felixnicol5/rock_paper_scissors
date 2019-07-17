@@ -1,0 +1,107 @@
+<script>
+    function bothInputs(){
+        let playerAsk = prompt("Rock, paper, or scissors?");
+        let computerAsk = computerPlay();
+        return [playerAsk, computerAsk];
+    }
+    
+    function computerPlay(){
+        let computerInput;
+        let randomNumber = Math.random();
+        if (randomNumber < 0.33) {
+            computerInput = "rock";
+        }
+        else if (randomNumber >= 0.33 && randomNumber < 0.66) {
+            computerInput = "paper";
+        }
+        else {
+            computerInput = "scissors";
+        }
+        return computerInput;
+    }
+    function playGame(playerChoice, computerChoice){
+        if (playerChoice == "rock"){
+            if (computerChoice == "rock") {
+                return ["It's a tie, since you both chose " + playerChoice, "tie"];
+            }
+            else if (computerChoice == "paper") {
+                return ["You lose, since " + computerChoice + " beats " + playerChoice, "loss"];
+            }
+
+            else if (computerChoice == "scissors"){
+                return ["You win, since " + playerChoice + " beats " + computerChoice, "win"];
+            }
+        }
+        else if (playerChoice == "paper") {
+            if (computerChoice == "rock") {
+                return ["You win, since " + playerChoice + " beats " + computerChoice, "win"];
+            }
+            else if (computerChoice == "paper") {
+                return ["It's a tie, since you both chose " + playerChoice, "tie"];
+            }
+
+            else if (computerChoice == "scissors"){
+                return ["You lose, since " + computerChoice + " beats " + playerChoice, "loss"];
+            }
+        }
+        else if (playerChoice == "scissors"){
+            if (computerChoice == "rock") {
+                return ["You lose, since " + computerChoice + " beats " + playerChoice, "loss"];
+            }
+            else if (computerChoice == "paper") {
+                return ["You win, since " + playerChoice + " beats " + computerChoice, "win"];
+            }
+
+            else if (computerChoice == "scissors"){
+                return ["It's a tie, since you both chose " + playerChoice, "tie"];
+            }
+        }
+        else{
+            console.log("incorrect input");
+        }
+    }
+    
+    function game(){
+        let games = 0;
+        let playerPoints = 0;
+        let computerPoints = 0;
+        while (games < 5){
+        let selections = bothInputs();
+        let playerSelection = selections[0];
+        let computerSelection = selections[1];
+        playerSelection = playerSelection.toLowerCase();
+        let gameResult = playGame(playerSelection, computerSelection);
+        let gameMessage = gameResult[0];
+        let result = gameResult[1];
+        console.log(gameMessage);
+        if (result == "win") {
+            playerPoints++;
+        }
+        else if (result == "loss"){
+            computerPoints++;
+        }
+        else {
+            console.log("No one gets any points!")
+        }
+        
+        games++;
+        }
+        if (playerPoints > computerPoints){
+            console.log("You won! Final score was: " + playerPoints + " - " + computerPoints);
+        }
+        else if (playerPoints == computerPoints){
+            console.log("It's a tie! Final score was: " + playerPoints + " - " + computerPoints);
+        }
+        else if (playerPoints < computerPoints){
+            console.log("You lost... Final score was: " + playerPoints + " - " + computerPoints);
+        }
+        
+    }
+    
+    
+    game();
+    
+    
+    
+
+</script>
