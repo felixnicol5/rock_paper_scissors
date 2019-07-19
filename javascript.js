@@ -1,6 +1,5 @@
 let playerPoints = 0;
 let computerPoints = 0;
-let restartNeeded = 0;
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
@@ -10,13 +9,11 @@ buttons.forEach((button) => {
             let score = "The final score is: " + playerPoints + " - " + computerPoints;
             gameResult.textContent = score;
             container.appendChild(gameResult);
-            restartNeeded = 1;
         }
     });
 });
 
 const container = document.querySelector("#results")
-const container2 = document.querySelector("#gameEnd")
 
 const roundResult = document.createElement('h2')
 roundResult.classList.add('roundResult')
